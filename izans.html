@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IZANS XITER VIP</title>
+  <style>
+    :root {
+      --primary: #ff1f1f;
+      --background: #0d0d0d;
+      --text: white;
+      --card: #111;
+      --highlight: #1a1a1a;
+    }
+    [data-theme="light"] {
+      --background: #ffffff;
+      --text: #000000;
+      --card: #f2f2f2;
+      --highlight: #e0e0e0;
+    }
+    body {
+      background-color: var(--background);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: black;
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    header img {
+      height: 70px;
+      margin-bottom: 5px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    .theme-toggle {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .product, .testimonial, .cart {
+      background-color: var(--card);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background-color: var(--primary);
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #e60000;
+    }
+    .notif-bar {
+      position: fixed;
+      top: -100px;
+      left: 0;
+      right: 0;
+      background-color: #25D366;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: top 0.5s ease;
+      z-index: 999;
+    }
+    .voucher {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .voucher input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      flex: 1;
+    }
+    .voucher .btn-voucher {
+      padding: 10px 15px;
+      background-color: var(--primary);
+      border: none;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .voucher .btn-voucher:hover {
+      background-color: #e60000;
+    }
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      padding: 10px 14px;
+      border-radius: 50%;
+      z-index: 1000;
+    }
+    .floating-wa img {
+      width: 30px;
+      height: 30px;
+    }
+    input[type="file"], input[type="text"] {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="notif-bar" id="notifBar">✅ Rizal telah menyelesaikan pembayaran untuk Aimbot Pro</div>  <div class="theme-toggle">
+    <button onclick="toggleTheme()">🌓</button>
+  </div>  <header>
+    <img src="https://iili.io/FaE7IHJ.png" alt="IZANS XITER VIP Logo">
+    <h1>IZANS XITER VIP</h1>
+  </header>  <div class="container"><div class="product">
+  <h2>🔥 Promo Hari Ini: Aimbot Pro cuma Rp 30.000! 🔥</h2>
+  <div id="countdown"></div>
+  <h3>Aimbot Pro</h3>
+  <p>Auto headshot, anti-banned, support semua device.</p>
+  <p><strong>Rp 50.000</strong></p>
+  <button class="btn" onclick="tambahKeKeranjang('Aimbot Pro', 50000)">Tambah ke Keranjang</button>
+</div>
+
+<div class="cart">
+  <h2>Keranjang</h2>
+  <p>Nama Anda:</p>
+  <input type="text" id="namaPembeli" placeholder="Masukkan nama Anda">
+  <div id="isiKeranjang"></div>
+
+  <div class="voucher">
+    <input type="text" id="kodeVoucher" placeholder="Masukkan kode voucher">
+    <button class="btn-voucher" onclick="pakaiVoucher()">Gunakan</button>
+  </div>
+
+  <p><strong>Total: Rp <span id="totalHarga">0</span></strong></p>
+
+  <div class="qris" id="qrisBox" style="display:none">
+    <h3>Scan QRIS untuk Bayar</h3>
+    <img src="https://iili.io/J9bqSAg.md.jpg" alt="QRIS Pembayaran" style="max-width: 100%;">
+  </div>
+
+  <p>Upload Bukti Transfer:</p>
+  <input type="file" id="buktiTransfer">
+
+  <a id="hubungiAdmin" class="btn" style="background-color: green; text-decoration: none; display: inline-block; margin-top: 10px;" onclick="tampilkanNotifDariTransfer()">
+    Saya sudah transfer - Hubungi Admin
+  </a>
+</div>
+
+<div class="testimonial" id="testimoni">
+  <h2>Testimonial</h2>
+  <div>
+    <p><em>"Aplikasinya mantap banget! Anti banned dan smooth!"</em></p>
+    <p>- User1</p>
+  </div>
+</div>
+
+  </div>  <a class="floating-wa" href="https://wa.me/628xxxxxxx" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Chat WA">
+  </a>  <script>
+    let keranjang = [], totalHarga = 0, diskon = 0;
+
+    function tambahKeKeranjang(nama, harga) {
+      keranjang.push({ nama, harga });
+      totalHarga += harga;
+      document.getElementById('totalHarga').innerText = totalHarga - diskon;
+      document.getElementById('isiKeranjang').innerHTML += `<p>${nama} - Rp ${harga}</p>`;
+      document.getElementById('qrisBox').style.display = 'block';
+      updateLinkWhatsApp();
+    }
+
+    function tampilkanNotifDariTransfer() {
+      const nama = document.getElementById('namaPembeli').value || 'Pembeli';
+      const produk = keranjang.length > 0 ? keranjang[keranjang.length - 1].nama : 'produk';
+      const notif = document.getElementById('notifBar');
+      notif.textContent = `✅ ${nama} telah menyelesaikan pembayaran untuk ${produk}`;
+      notif.style.top = '0';
+      setTimeout(() => {
+        notif.style.top = '-100px';
+      }, 5000);
+    }
+
+    function updateLinkWhatsApp() {
+      const btn = document.getElementById('hubungiAdmin');
+      const teks = encodeURIComponent(`Halo Admin, saya sudah transfer Rp ${totalHarga - diskon}. Berikut bukti transfer saya:`);
+      btn.href = `https://wa.me/628xxxxxxx?text=${teks}`;
+    }
+
+    function pakaiVoucher() {
+      const kode = document.getElementById('kodeVoucher').value;
+      if (kode === 'XITERHEMAT10') {
+        diskon = totalHarga * 0.10;
+        alert('Diskon 10% berhasil diterapkan!');
+        document.getElementById('totalHarga').innerText = totalHarga - diskon;
+        updateLinkWhatsApp();
+      } else {
+        alert('Kode tidak valid!');
+      }
+    }
+
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme');
+      document.body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    }
+
+    function mulaiCountdown() {
+      const countdown = document.getElementById('countdown');
+      let detik = 60 * 30;
+      const timer = setInterval(() => {
+        const m = Math.floor(detik / 60);
+        const s = detik % 60;
+        countdown.textContent = `Promo berakhir dalam: ${m}m ${s}s`;
+        detik--;
+        if (detik < 0) {
+          clearInterval(timer);
+          countdown.textContent = 'Promo telah berakhir!';
+        }
+      }, 1000);
+    }
+
+    document.body.setAttribute('data-theme', 'dark');
+    mulaiCountdown();
+  </script></body>
+</html>
